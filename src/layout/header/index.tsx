@@ -1,7 +1,7 @@
 import Script from 'next/script'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Flex, Spacer, Box, Icon, Heading, Tabs, TabList, TabPanels, Tab, TabPanel, Switch } from '@chakra-ui/react'
+import { Flex, Spacer, Box, Center, Heading, Tabs, TabList, TabPanels, Tab, TabPanel, Switch } from '@chakra-ui/react'
 import { Link as ChakraLink } from '@chakra-ui/react'
 import { SiGithub } from 'react-icons/si'
 import { BsInstagram } from 'react-icons/bs'
@@ -17,6 +17,7 @@ const Header = () => {
   const instaUrl = process.env.NEXT_PUBLIC_INSTAGRAM ? process.env.NEXT_PUBLIC_INSTAGRAM : '/'
   const { pathname } = useRouter()
   const [menuIdx, setMenuIdx] = useState<number>(0)
+  const [theme, setTheme] = useState<boolean>(true) // true: 라이트 모드, false: 다크 모드
 
   useEffect(() => {
     const idx = routes.findIndex((r, idx) => {
@@ -26,6 +27,8 @@ const Header = () => {
     })
     setMenuIdx(idx)
   }, [pathname])
+
+  const toggleTheme = () => setTheme((prev) => !prev)
 
   return (
     <>
@@ -61,10 +64,15 @@ const Header = () => {
           <ChakraLink href={instaUrl} isExternal>
             <BsInstagram size="28" />
           </ChakraLink>
-          <Box>
-            <RiMoonLine size="28" color="#C47AFF" />
-            <RiSunFill size="28" color="#F0FF42" />
-          </Box>
+          {theme ? (
+            <Center as="button" w="28px" h="28px" onClick={toggleTheme}>
+              <RiMoonLine size="28" color="#C47AFF" />
+            </Center>
+          ) : (
+            <Center as="button" w="28px" h="28px" onClick={toggleTheme}>
+              <RiSunFill size="26" color="#F0FF42" />
+            </Center>
+          )}
         </Flex>
       </Flex>
     </>
