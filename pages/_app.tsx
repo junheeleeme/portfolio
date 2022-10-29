@@ -1,12 +1,8 @@
 import '../styles/globals.css'
-import Script from 'next/script'
 import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
 import { extendTheme } from '@chakra-ui/react'
-import { Container } from '@chakra-ui/react'
 import type { AppProps } from 'next/app'
-import Header from '../src/layout/header'
-import Main from '../src/layout/main'
-import Footer from '../src/layout/footer'
+import Layout from '../src/layout'
 
 interface CustomAppProps extends AppProps {}
 
@@ -27,13 +23,10 @@ function MyApp({ Component, pageProps }: CustomAppProps) {
   return (
     <ChakraProvider theme={theme}>
       <ColorModeProvider>
-        <Container position="relative" minW="100vw" minH="100vh" pt="70px" boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'}>
-          <Header />
-          <Main>
-            <Component {...pageProps} />
-          </Main>
-          <Footer />
-        </Container>
+        {/* Layout */}
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ColorModeProvider>
     </ChakraProvider>
   )

@@ -3,7 +3,7 @@ const Main = ({ children }: React.PropsWithChildren) => {
     <>
       <main>{children}</main>
     </>
-  );
-};
+  )
+}
 
-export default Main;
+export default Main

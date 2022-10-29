@@ -19,13 +19,11 @@ const Header = () => {
   const { pathname } = useRouter()
   const [loadEffect, setLoadEffect] = useState<boolean>(false)
   const [menuIdx, setMenuIdx] = useState<number>(0)
-
+  // 컬러모드: light : dark
   const { colorMode, toggleColorMode } = useColorMode()
-  const [theme, setTheme] = useState<boolean>(true) // true: 라이트 모드, false: 다크 모드
 
   useEffect(() => {
     setLoadEffect(true)
-    console.log(colorMode)
   }, [])
 
   useEffect(() => {
@@ -37,12 +35,10 @@ const Header = () => {
     setMenuIdx(idx)
   }, [pathname])
 
-  const toggleTheme = () => setTheme((prev) => !prev)
-
   return (
     <>
       <Script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" />
-      <Flex as="header" py="2" pos="absolute" top={loadEffect ? '0' : '-71px'} left="0" w="100%" px="4" transition="top 1s ease">
+      <Flex as="header" py="2" pos="absolute" top={loadEffect ? '0' : '-71px'} left="0" w="100%" px="4" transition="top 0.6s ease" zIndex="9999">
         {/* 로고 */}
         <Heading as="h1">
           <Link href="/">&#60;🔥/&#62;</Link>
