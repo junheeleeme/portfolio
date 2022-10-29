@@ -1,15 +1,14 @@
-import { Flex, Box, Spacer, Heading } from '@chakra-ui/react'
+import { Flex, Spacer, Heading } from '@chakra-ui/react'
 
 const Footer = () => {
-  const year = new Date().getFullYear
+  const year: number = new Date().getFullYear()
 
   return (
-    <Flex as="footer" pos="absolute" bottom="0" left="0" w="100%" py="2">
+    <Flex as="footer" pos="fixed" bottom="0" left="0" w="100%" h="32px" p="2">
       <Spacer />
-      <Heading as="h3" fontSize="14px" fontWeight="normal">
-        juni-official All rights reserved
+      <Heading as="h3" fontSize="13px" fontWeight="normal">
+        {year} juni-official All rights reserved
       </Heading>
-      <Spacer />
     </Flex>
   )
 }

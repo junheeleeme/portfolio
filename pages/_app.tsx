@@ -7,7 +7,9 @@ import Layout from '../src/layout'
 interface CustomAppProps extends AppProps {}
 
 const breakpoints = {
-  md: '30em',
+  sm: '30em',
+  md: '48em',
+  lg: '60em',
 }
 
 const colors = {
