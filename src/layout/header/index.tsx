@@ -1,7 +1,7 @@
 import Script from 'next/script'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Flex, Spacer, Box, Center, Heading, Tabs, TabList, TabPanels, Tab, TabPanel, Switch } from '@chakra-ui/react'
+import { Flex, Spacer, Box, Center, Heading, Tabs, TabList, Tab, useColorMode } from '@chakra-ui/react'
 import { Link as ChakraLink } from '@chakra-ui/react'
 import { SiGithub } from 'react-icons/si'
 import { BsInstagram } from 'react-icons/bs'
@@ -15,9 +15,18 @@ const Header = () => {
   //
   const tistoryUrl = process.env.NEXT_PUBLIC_TISTORY ? process.env.NEXT_PUBLIC_TISTORY : '/'
   const instaUrl = process.env.NEXT_PUBLIC_INSTAGRAM ? process.env.NEXT_PUBLIC_INSTAGRAM : '/'
+
   const { pathname } = useRouter()
+  const [loadEffect, setLoadEffect] = useState<boolean>(false)
   const [menuIdx, setMenuIdx] = useState<number>(0)
+
+  const { colorMode, toggleColorMode } = useColorMode()
   const [theme, setTheme] = useState<boolean>(true) // true: 라이트 모드, false: 다크 모드
+
+  useEffect(() => {
+    setLoadEffect(true)
+    console.log(colorMode)
+  }, [])
 
   useEffect(() => {
     const idx = routes.findIndex((r, idx) => {
@@ -33,16 +42,19 @@ const Header = () => {
   return (
     <>
       <Script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" />
-      <Flex as="header" py="2">
+      <Flex as="header" py="2" pos="absolute" top={loadEffect ? '0' : '-71px'} left="0" w="100%" px="4" transition="top 1s ease">
+        {/* 로고 */}
         <Heading as="h1">
           <Link href="/">&#60;🔥/&#62;</Link>
         </Heading>
         <Spacer />
+
+        {/* 네비게이션 메뉴 */}
         <Tabs as="nav" index={menuIdx} variant="unstyled" display="flex">
           <TabList as="ul">
             {routes.map((r) => {
               return (
-                <Tab as="li" key={r.id} w="100px" p="0" _selected={{ transform: 'translate(0px, 5px) scale(1.2)', fontWeight: 'bold' }}>
+                <Tab as="li" key={r.id} w="100px" p="0" _hover={{ transform: 'scale(1.1) rotate(-5deg)' }} _selected={{ transform: 'translate(0px, 5px) scale(1.3) rotate(6deg)', fontWeight: 'bold' }}>
                   <Link href={r.path} passHref>
                     <ChakraLink px="5" py="1" fontSize="1.15rem" _hover={{ textDecoration: 'none' }}>
                       {r.title}
@@ -54,23 +66,29 @@ const Header = () => {
           </TabList>
         </Tabs>
         <Spacer />
+
+        {/* 헤더 우측 아이콘 */}
         <Flex py="2.5" gap="3">
           <ChakraLink href={tistoryUrl} isExternal>
             <SiGithub size="28" />
           </ChakraLink>
           <ChakraLink href={tistoryUrl} isExternal>
-            <Image src="/image/tistory-logo.svg" alt="Tistory Logo" width="28" height="28" />
+            {colorMode === 'light' ? (
+              <Image src="/image/tistory-logo-light.svg" alt="Tistory Logo" width="28" height="28" />
+            ) : (
+              <Image src="/image/tistory-logo-dark.svg" alt="Tistory Logo" width="28" height="28" />
+            )}
           </ChakraLink>
           <ChakraLink href={instaUrl} isExternal>
-            <BsInstagram size="28" />
+            <BsInstagram size="28" color="#C13584" />
           </ChakraLink>
-          {theme ? (
-            <Center as="button" w="28px" h="28px" onClick={toggleTheme}>
-              <RiMoonLine size="28" color="#C47AFF" />
+          {colorMode === 'dark' ? (
+            <Center as="button" w="28px" h="28px" onClick={toggleColorMode}>
+              <RiSunFill size="26" color="#F0FF42" />
             </Center>
           ) : (
-            <Center as="button" w="28px" h="28px" onClick={toggleTheme}>
-              <RiSunFill size="26" color="#F0FF42" />
+            <Center as="button" w="28px" h="28px" onClick={toggleColorMode}>
+              <RiMoonLine size="28" color="#C47AFF" />
             </Center>
           )}
         </Flex>

@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import Script from 'next/script'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
 import { extendTheme } from '@chakra-ui/react'
 import { Container } from '@chakra-ui/react'
 import type { AppProps } from 'next/app'
@@ -26,13 +26,15 @@ const theme = extendTheme({ colors, breakpoints })
 function MyApp({ Component, pageProps }: CustomAppProps) {
   return (
     <ChakraProvider theme={theme}>
-      <Container position="relative" minW="100vw" minH="100vh" boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'}>
-        <Header />
-        <Main>
-          <Component {...pageProps} />
-        </Main>
-        <Footer />
-      </Container>
+      <ColorModeProvider>
+        <Container position="relative" minW="100vw" minH="100vh" pt="70px" boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'}>
+          <Header />
+          <Main>
+            <Component {...pageProps} />
+          </Main>
+          <Footer />
+        </Container>
+      </ColorModeProvider>
     </ChakraProvider>
   )
 }
