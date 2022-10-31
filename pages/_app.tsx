@@ -4,8 +4,6 @@ import { extendTheme } from '@chakra-ui/react'
 import type { AppProps } from 'next/app'
 import Layout from '../src/layout'
 
-interface CustomAppProps extends AppProps {}
-
 const breakpoints = {
   sm: '30em',
   md: '48em',
@@ -21,7 +19,7 @@ const colors = {
 }
 const theme = extendTheme({ colors, breakpoints })
 
-function MyApp({ Component, pageProps }: CustomAppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <ColorModeProvider>

@@ -5,6 +5,10 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+:is(html, body)::-webkit-scrollbar {
+  display: none;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -22,4 +26,22 @@ a {
     color: white;
     background: black;
   }
+}
+
+.header {
+  display: flex;
+  height: 70px;
+  padding: 0 1em;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: #4649ff;
+  transform-origin: 0%;
 }

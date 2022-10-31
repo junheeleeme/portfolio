@@ -1,6 +1,5 @@
 import { Flex, Box, Center, Menu, MenuButton, MenuList, MenuItem, IconButton, useColorMode } from '@chakra-ui/react'
 import { Link as ChakraLink } from '@chakra-ui/react'
-import Link from 'next/link'
 import { SiGithub } from 'react-icons/si'
 import { IoMdMoon } from 'react-icons/io'
 import { FcOpenedFolder } from 'react-icons/fc'

@@ -3,7 +3,7 @@ import { Container } from '@chakra-ui/react'
 const Main = ({ children }: React.PropsWithChildren) => {
   return (
     <>
-      <Container as="main" maxW="1080px" p="4" bg="#fff">
+      <Container as="div" className="main-wrap" maxW="1080px" p="4">
         {children}
       </Container>
     </>
