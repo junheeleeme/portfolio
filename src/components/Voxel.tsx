@@ -22,7 +22,7 @@ const Voxel = () => {
         auto-rotate-delay="0"
         // rotation-per-second={speedTable[0] + 'deg'}
         exposure="1"
-        style={{ width: '100%', height: '500px', '--progress-bar-height': '0', '--progress-mask': 'none', '--poster-color': 'transparent' }}
+        style={{ width: '100%', height: 'calc(100vh - (102px + 2em))', '--progress-bar-height': '0', '--progress-mask': 'none', '--poster-color': 'transparent' }}
       />
     </>
   )

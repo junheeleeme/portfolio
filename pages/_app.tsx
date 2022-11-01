@@ -7,7 +7,7 @@ import Layout from '../src/layout'
 const breakpoints = {
   sm: '30em',
   md: '48em',
-  lg: '60em',
+  lg: '75em',
 }
 
 const colors = {

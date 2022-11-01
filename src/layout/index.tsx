@@ -35,7 +35,7 @@ const Layout = ({ children }: React.PropsWithChildren) => {
             ease: [0, 0.71, 0.5, 1],
           }}
         >
-          <Main>{children}</Main>
+          <Main maxW="1280">{children}</Main>
         </motion.main>
       </AnimatePresence>
       <Footer />

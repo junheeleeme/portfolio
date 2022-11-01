@@ -9,7 +9,6 @@ const Home = () => {
     <>
       <Title />
       <NoSsrVoxel />
-      <h1>Home</h1>
     </>
   )
 }

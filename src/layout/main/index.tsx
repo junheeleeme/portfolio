@@ -1,9 +1,9 @@
 import { Container } from '@chakra-ui/react'
 
-const Main = ({ children }: React.PropsWithChildren) => {
+const Main = ({ children, maxW }: { children: React.ReactNode; maxW: string }) => {
   return (
     <>
-      <Container as="div" className="main-wrap" maxW="1080px" p="4">
+      <Container as="div" className="main-wrap" maxW={`${maxW}px`} p="4">
         {children}
       </Container>
     </>
